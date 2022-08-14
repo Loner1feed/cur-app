@@ -1,5 +1,8 @@
-import { Box, MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
+
+import { Box, MenuItem, Select, TextField } from "@mui/material";
+
 import { style } from "./style";
 
 export const ConverterInput = ({
@@ -9,21 +12,18 @@ export const ConverterInput = ({
   select,
   onSelectChange,
 }) => {
-  const inputHandloer = (e) => {
-    onValueChange(e.target.value);
+  const inputHandler = (e) => {
+    const result = e.target.value.replace(/\D/g, "");
+    onValueChange(result);
   };
 
   const selectHandler = (e) => {
-    // const re = /[0-9]+/g;
-    // if (e.target.value === "" || re.test(e.target.value)) {
-    //   onSelectChange(e.target.value);
-    // }
     onSelectChange(e.target.value);
   };
 
   return (
     <Box>
-      <TextField value={value} onChange={inputHandloer} sx={style.field} />
+      <TextField value={value} onChange={inputHandler} sx={style.field} />
       <Select onChange={selectHandler} value={select} sx={style.select}>
         {labels.map((item, i) => (
           <MenuItem value={item} key={i}>
@@ -33,4 +33,12 @@ export const ConverterInput = ({
       </Select>
     </Box>
   );
+};
+
+ConverterInput.propTypes = {
+  labels: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.string,
+  select: PropTypes.string,
+  onValueChange: PropTypes.func,
+  onSelectChange: PropTypes.func,
 };

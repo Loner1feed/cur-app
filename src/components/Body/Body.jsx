@@ -1,15 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
+import { Box } from "@mui/material";
+import MultipleStopIcon from "@mui/icons-material/MultipleStop";
+
 import { fixNumber } from "../../helpers/fixNumber";
 import { ConverterInput } from "../ConverterInput/ConverterInput";
-import MultipleStopIcon from "@mui/icons-material/MultipleStop";
 import { style } from "./style";
 
 export const Body = ({ data }) => {
   const rateLabels = Object.keys(data.rates);
 
-  const [fromValue, setFromValue] = useState(1);
+  const [fromValue, setFromValue] = useState(0);
   const [fromSelect, setFromSelect] = useState(rateLabels[0]);
   const [toValue, setToValue] = useState(0);
   const [toSelect, setToSelect] = useState(rateLabels[1]);
@@ -29,8 +32,10 @@ export const Body = ({ data }) => {
   };
 
   const toValueChange = (val) => {
+    const result = val.replace(/\D/g, "");
+
     setFromValue(
-      fixNumber((+val * data.rates[fromSelect]) / data.rates[toSelect])
+      fixNumber((+result * data.rates[fromSelect]) / data.rates[toSelect])
     );
     setToValue(val);
   };
@@ -69,4 +74,8 @@ export const Body = ({ data }) => {
       />
     </Box>
   );
+};
+
+Body.propTypes = {
+  data: PropTypes.object,
 };

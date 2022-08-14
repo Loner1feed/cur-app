@@ -1,5 +1,8 @@
-import { AppBar, Box, Typography } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
+
+import { AppBar, Box, Typography } from "@mui/material";
+
 import { CurrencyDisplayItem } from "../CurrencyDisplayItem/CurrencyDisplayItem";
 import { style } from "./style";
 
@@ -24,4 +27,8 @@ export const Header = ({ data }) => {
       </Box>
     </AppBar>
   );
+};
+
+Header.propTypes = {
+  datra: PropTypes.object,
 };

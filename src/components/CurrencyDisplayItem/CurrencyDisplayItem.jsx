@@ -1,5 +1,8 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
+
+import { Box, Typography } from "@mui/material";
+
 import { fixNumber } from "../../helpers/fixNumber";
 import { style } from "./style";
 
@@ -12,12 +15,16 @@ export const CurrencyDisplayItem = ({ base, rates, searched }) => {
 
   const finalValue = fixNumber(searchedValue / baseValue);
 
-  console.log(`${base} to ${searched}`, searchedValue / baseValue);
-
   return (
     <Box sx={style.item}>
       <Typography>{base}:</Typography>
       <Typography>{finalValue}</Typography>
     </Box>
   );
+};
+
+CurrencyDisplayItem.propTypes = {
+  base: PropTypes.string,
+  rates: PropTypes.object,
+  searched: PropTypes.string,
 };

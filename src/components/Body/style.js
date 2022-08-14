@@ -10,6 +10,7 @@ export const style = {
     alignItems: 'center',
     maxHeight: '100%',
     height: '100vh',
+    background: '#fff',
   },
 
   icon: {
