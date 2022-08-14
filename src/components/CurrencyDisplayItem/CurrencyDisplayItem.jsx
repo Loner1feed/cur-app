@@ -7,6 +7,7 @@ import { fixNumber } from "../../helpers/fixNumber";
 import { style } from "./style";
 
 export const CurrencyDisplayItem = ({ base, rates, searched }) => {
+  // calculating value to display
   const searchedValue = Object.entries(rates).find(
     (el) => el[0] === searched
   )[1];

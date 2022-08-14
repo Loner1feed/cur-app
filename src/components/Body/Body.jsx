@@ -12,9 +12,9 @@ import { style } from "./style";
 export const Body = ({ data }) => {
   const rateLabels = Object.keys(data.rates);
 
-  const [fromValue, setFromValue] = useState(0);
+  const [fromValue, setFromValue] = useState("0");
   const [fromSelect, setFromSelect] = useState(rateLabels[0]);
-  const [toValue, setToValue] = useState(0);
+  const [toValue, setToValue] = useState("0");
   const [toSelect, setToSelect] = useState(rateLabels[1]);
 
   const fromValueChange = (val) => {
@@ -48,7 +48,7 @@ export const Body = ({ data }) => {
   };
 
   useEffect(() => {
-    fromValueChange(1);
+    fromValueChange("1");
   }, []);
 
   return (
